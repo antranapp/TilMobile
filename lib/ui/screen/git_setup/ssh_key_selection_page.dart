@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:function_types/function_types.dart';
 
-import 'package:til/ui/screen/git_setup/git_host_setup_button.dart';
-import 'package:til/ui/screen/git_setup/git_host_setup_type.dart';
+import 'button.dart';
 
-class GitHostAutoConfigureChoicePage extends StatelessWidget {
-    final Func1<GitHostSetupType, void> onDone;
+class GitSshKeySelectionPage extends StatelessWidget {
+    final Func0<void> onGenerateKeys;
+    final Func0<void> onUserProvidedKeys;
 
-    GitHostAutoConfigureChoicePage({@required this.onDone});
+    GitSshKeySelectionPage({
+        @required this.onGenerateKeys,
+        @required this.onUserProvidedKeys,
+    });
 
     @override
     Widget build(BuildContext context) {
@@ -16,22 +19,18 @@ class GitHostAutoConfigureChoicePage extends StatelessWidget {
             child: Column(
                 children: <Widget>[
                     Text(
-                        "How do you want to do this?",
+                        "We need SSH keys to authenticate -",
                         style: Theme.of(context).textTheme.headline,
                     ),
                     const SizedBox(height: 16.0),
                     GitHostSetupButton(
-                        text: "Setup Automatically",
-                        onPressed: () {
-                            onDone(GitHostSetupType.Auto);
-                        },
+                        text: "Generate new keys",
+                        onPressed: onGenerateKeys,
                     ),
                     const SizedBox(height: 8.0),
                     GitHostSetupButton(
-                        text: "Let me do it manually",
-                        onPressed: () async {
-                            onDone(GitHostSetupType.Manual);
-                        },
+                        text: "Provide Custom SSH Keys",
+                        onPressed: onUserProvidedKeys,
                     ),
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,

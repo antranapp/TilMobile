@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:git_url_parse2/git_url_parse2.dart';
 import 'package:function_types/function_types.dart';
-import 'package:til/apis/git_host_factory.dart';
+import 'package:til/apis/git/git_host_factory.dart';
 
-import 'git_host_setup_button.dart';
+import 'button.dart';
 
 class GitCloneUrlPage extends StatefulWidget {
     final Func1<String, void> doneFunction;
@@ -48,7 +48,7 @@ class GitCloneUrlPageState extends State<GitCloneUrlPage> {
                 autofocus: true,
                 style: Theme.of(context).textTheme.subhead,
                 decoration: const InputDecoration(
-                    hintText: 'git@github.com:GitJournal/GitJournal.git',
+                    hintText: 'git@github.com:someone/today-i-learned.git',
                 ),
                 validator: _isCloneUrlValid,
                 focusNode: inputFormFocus,

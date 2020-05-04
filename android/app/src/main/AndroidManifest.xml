@@ -6,7 +6,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="til">
-        <activity android:name=".UriReceiverAcitivity"></activity>
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -20,7 +20,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UriReceiverActivity" />
+
+        <activity
+            android:name=".UriReceiverActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="til" android:host="login.oauth2" />
+                <!-- Triggering URI would be til://login.oauth2 -->
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

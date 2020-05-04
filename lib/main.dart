@@ -11,7 +11,7 @@ import 'settings/settings.dart';
 import 'utils/logger.dart';
 import 'state/app_state.dart';
 
-import 'apis/git.dart';
+import 'apis/git/git.dart';
 
 /// Entry point for our application.
 ///
@@ -51,8 +51,6 @@ void main() async {
         appState.localGitRepoConfigured = true;
         appState.save(pref);
     }
-
-    Log.i("START RUNNING APP");
 
     runApp(ChangeNotifierProvider(
         create: (_) {

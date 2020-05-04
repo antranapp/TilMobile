@@ -186,7 +186,7 @@ class GitHub implements GitHost {
         var url = "https://api.github.com/repos/$repo/keys";
 
         var data = <String, dynamic>{
-            'title': "GitJournal",
+            'title': "Til",
             'key': sshPublicKey,
             'read_only': false,
         };

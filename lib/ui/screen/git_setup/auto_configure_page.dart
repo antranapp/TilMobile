@@ -4,30 +4,30 @@ import 'package:function_types/function_types.dart';
 
 import 'package:git_bindings/git_bindings.dart';
 
-import 'package:til/apis/git_host_factory.dart';
+import 'package:til/apis/git/git_host_factory.dart';
 import 'package:til/settings/settings.dart';
 import 'package:til/utils/logger.dart';
 
-import 'git_host_setup_button.dart';
-import 'git_host_setup_loading_page.dart';
-import 'git_host_setup_error_page.dart';
+import 'button.dart';
+import 'loading_page.dart';
+import 'error_page.dart';
 
-class GitHostSetupAutoConfigure extends StatefulWidget {
+class GitAutoConfigurePage extends StatefulWidget {
     final GitHostType gitHostType;
     final Func1<String, void> onDone;
 
-    GitHostSetupAutoConfigure({
+    GitAutoConfigurePage({
         @required this.gitHostType,
         @required this.onDone,
     });
 
     @override
-    GitHostSetupAutoConfigureState createState() {
-        return GitHostSetupAutoConfigureState();
+    GitAutoConfigurePageState createState() {
+        return GitAutoConfigurePageState();
     }
 }
 
-class GitHostSetupAutoConfigureState extends State<GitHostSetupAutoConfigure> {
+class GitAutoConfigurePageState extends State<GitAutoConfigurePage> {
     GitHost gitHost;
     String errorMessage = "";
 
@@ -75,7 +75,7 @@ class GitHostSetupAutoConfigureState extends State<GitHostSetupAutoConfigure> {
                     setState(() {
                         _message = "Generating SSH Key";
                     });
-                    var publicKey = await generateSSHKeys(comment: "GitJournal");
+                    var publicKey = await generateSSHKeys(comment: "Til");
 
                     setState(() {
                         _message = "Adding as a Deploy Key";
@@ -84,10 +84,10 @@ class GitHostSetupAutoConfigureState extends State<GitHostSetupAutoConfigure> {
 
                     var userInfo = await gitHost.getUserInfo();
                     if (userInfo.name != null && userInfo.name.isNotEmpty) {
-                        //Settings.instance.gitAuthor = userInfo.name;
+                        Settings.instance.gitAuthor = userInfo.name;
                     }
                     if (userInfo.email != null && userInfo.email.isNotEmpty) {
-                        //Settings.instance.gitAuthorEmail = userInfo.email;
+                        Settings.instance.gitAuthorEmail = userInfo.email;
                     }
                     //Settings.instance.save();
                 } on Exception catch (e, stacktrace) {
@@ -120,10 +120,10 @@ class GitHostSetupAutoConfigureState extends State<GitHostSetupAutoConfigure> {
     Widget build(BuildContext context) {
         if (_configuringStarted) {
             if (errorMessage == null || errorMessage.isEmpty) {
-                return GitHostSetupLoadingPage(_message);
+                return GitLoadingPage(_message);
             }
 
-            return GitHostSetupErrorPage(errorMessage);
+            return GitErrorPage(errorMessage);
         }
 
         var columns = Column(
@@ -154,7 +154,7 @@ class GitHostSetupAutoConfigureState extends State<GitHostSetupAutoConfigure> {
                 const SizedBox(height: 32.0),
 
                 GitHostSetupButton(
-                    text: "Authorize GitJournal",
+                    text: "Authorize Til",
                     onPressed: _startAutoConfigure,
                 ),
             ],

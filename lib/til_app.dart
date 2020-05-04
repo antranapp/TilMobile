@@ -7,7 +7,7 @@ import 'package:git_bindings/git_bindings.dart';
 import 'package:til/state/state_container.dart';
 import 'package:til/state/app_state.dart';
 import 'package:til/settings/settings.dart';
-import 'package:til/apis/git.dart';
+import 'package:til/apis/git/git.dart';
 import 'package:til/utils/logger.dart';
 
 import 'package:til/ui/screen/git_setup/setting_git_setup_screen.dart';

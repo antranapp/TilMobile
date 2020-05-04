@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:function_types/function_types.dart';
 
-import 'package:til/ui/screen/git_setup/git_host_setup_button.dart';
+import 'button.dart';
+import 'setup_type.dart';
 
-class GitHostSetupKeyChoice extends StatelessWidget {
-    final Func0<void> onGenerateKeys;
-    final Func0<void> onUserProvidedKeys;
+class GitAutoConfigureSelectionPage extends StatelessWidget {
+    final Func1<GitHostSetupType, void> onDone;
 
-    GitHostSetupKeyChoice({
-        @required this.onGenerateKeys,
-        @required this.onUserProvidedKeys,
-    });
+    GitAutoConfigureSelectionPage({@required this.onDone});
 
     @override
     Widget build(BuildContext context) {
@@ -19,18 +16,22 @@ class GitHostSetupKeyChoice extends StatelessWidget {
             child: Column(
                 children: <Widget>[
                     Text(
-                        "We need SSH keys to authenticate -",
+                        "How do you want to do this?",
                         style: Theme.of(context).textTheme.headline,
                     ),
                     const SizedBox(height: 16.0),
                     GitHostSetupButton(
-                        text: "Generate new keys",
-                        onPressed: onGenerateKeys,
+                        text: "Setup Automatically",
+                        onPressed: () {
+                            onDone(GitHostSetupType.Auto);
+                        },
                     ),
                     const SizedBox(height: 8.0),
                     GitHostSetupButton(
-                        text: "Provide Custom SSH Keys",
-                        onPressed: onUserProvidedKeys,
+                        text: "Let me do it manually",
+                        onPressed: () async {
+                            onDone(GitHostSetupType.Manual);
+                        },
                     ),
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,

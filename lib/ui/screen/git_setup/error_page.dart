@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class GitHostSetupErrorPage extends StatelessWidget {
+class GitErrorPage extends StatelessWidget {
     final String errorMessage;
 
-    GitHostSetupErrorPage(this.errorMessage);
+    GitErrorPage(this.errorMessage);
 
     @override
     Widget build(BuildContext context) {

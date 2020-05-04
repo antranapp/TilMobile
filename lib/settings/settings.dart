@@ -11,8 +11,8 @@ class Settings {
     static Settings get instance => _singleton;
 
     // Properties
-    String gitAuthor = "GitJournal";
-    String gitAuthorEmail = "app@gitjournal.io";
+    String gitAuthor = "Til";
+    String gitAuthorEmail = "email@example.com";
 
     RemoteSyncFrequency remoteSyncFrequency = RemoteSyncFrequency.Default;
     int version = 0;
