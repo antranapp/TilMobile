@@ -1,0 +1,4 @@
+enum GitHostSetupType {
+    Auto,
+    Manual,
+}

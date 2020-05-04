@@ -7,7 +7,7 @@ description: Mobile app to manage a Today-I-Learned repository
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+    # Read more about Android versioning at https://developer.android.com/studio/publish/versioning
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
@@ -20,9 +20,17 @@ dependencies:
     flutter:
         sdk: flutter
 
+    url_launcher: ^5.4.1
+    http: ^0.12.0+1
+    fimber: ^0.3.0
+    function_types: ^0.0.2
+    git_url_parse2: ^0.0.1
+    provider: ^3.2.0
+    shared_preferences: ^0.5.6
+    uuid: ^2.0.1
+    synchronized: ^2.2.0
+
     git_bindings: ^0.0.12
-    dart_git:
-        git: https://github.com/GitJournal/dart_git.git
 
 dev_dependencies:
     flutter_test:
