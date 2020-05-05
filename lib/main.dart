@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:git_bindings/git_bindings.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:path/path.dart' as p;
-import 'package:til/state/state_container.dart';
 
 import 'til_app.dart';
+import 'state/state_container.dart';
+import 'state/app_state.dart';
 import 'settings/settings.dart';
 import 'utils/logger.dart';
-import 'state/app_state.dart';
-
 import 'apis/git/git.dart';
 
 /// Entry point for our application.
@@ -26,7 +23,7 @@ void main() async {
     var pref = await SharedPreferences.getInstance();
     Settings.instance.load(pref);
 
-    //Log.init();
+    Log.init();
 
     var appState = AppState(pref);
     appState.dumpToLog();
@@ -39,23 +36,20 @@ void main() async {
         appState.save(pref);
     }
 
-    if (appState.localGitRepoConfigured == false) {
-        // FIXME: What about exceptions!
-        appState.localGitRepoFolderName = "journal_local";
-        var repoPath = p.join(
-            appState.gitBaseDirectory,
-            appState.localGitRepoFolderName,
-        );
-        await GitRepo.init(repoPath);
-
-        appState.localGitRepoConfigured = true;
-        appState.save(pref);
-    }
-
+    // ChangeNotifierProvider is the widget that provides an instance of a `ChangeNotifier` to its descendants.
+    // It comes from the `provider package.
+    // Here we want to inject the StateContainer into all descendants of `TilApp`.
+    // With this we can modify the `StateContainer` from anywhere in the widget tree.
     runApp(ChangeNotifierProvider(
         create: (_) {
             return StateContainer(appState);
         },
-        child: TilApp(),
+        child: ChangeNotifierProvider(
+            child: TilApp(),
+            create: (_) {
+                //assert(appState.notesFolder != null);
+                return appState.notesFolder;
+            },
+        )
     ));
 }

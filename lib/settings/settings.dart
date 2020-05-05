@@ -1,6 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
+import 'package:til/base/note_filename_format.dart';
+
 class Settings {
     static List<Function> changeObservers = [];
 
@@ -13,6 +15,11 @@ class Settings {
     // Properties
     String gitAuthor = "Til";
     String gitAuthorEmail = "email@example.com";
+
+    NoteFileNameFormat noteFileNameFormat;
+
+    String yamlUpdatedAtKey = "updatedAt";
+    String yamlCreatedAtKey = "createdAt";
 
     RemoteSyncFrequency remoteSyncFrequency = RemoteSyncFrequency.Default;
     int version = 0;

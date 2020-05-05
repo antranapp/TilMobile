@@ -1,6 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:til/utils/logger.dart';
+import 'package:til/base/notes_folder_fs.dart';
 
 enum SyncStatus {
     Unknown,
@@ -11,15 +13,12 @@ enum SyncStatus {
 }
 
 class AppState {
-    //
-    // Saved on Disk
-    //
-    // FIXME: These should be figured out by querying the 'git remotes'
-    String localGitRepoFolderName = "";
-    bool localGitRepoConfigured = false;
 
+    String localGitRemoteFolderName = "til";
     String remoteGitRepoFolderName = "";
     bool remoteGitRepoConfigured = false;
+
+    NotesFolderFS notesFolder;
 
     SyncStatus syncStatus = SyncStatus.Unknown;
     int numChanges = 0;
@@ -28,29 +27,23 @@ class AppState {
     // Temporary
     //
     /// This is the directory where all the git repos are stored
-    String gitBaseDirectory = "";
+    String gitBaseDirectory =  "";
 
     AppState(SharedPreferences pref) {
-        localGitRepoConfigured = pref.getBool("localGitRepoConfigured") ?? false;
         remoteGitRepoConfigured = pref.getBool("remoteGitRepoConfigured") ?? false;
-        localGitRepoFolderName = pref.getString("localGitRepoPath") ?? "";
         remoteGitRepoFolderName = pref.getString("remoteGitRepoPath") ?? "";
         gitBaseDirectory = pref.getString("gitBaseDirectory") ?? "";
     }
 
     void dumpToLog() {
         Log.i(" ---- Settings ---- ");
-        Log.i("localGitRepoConfigured: $localGitRepoConfigured");
         Log.i("remoteGitRepoConfigured: $remoteGitRepoConfigured");
-        Log.i("localGitRepoFolderName: $localGitRepoFolderName");
         Log.i("remoteGitRepoFolderName: $remoteGitRepoFolderName");
         Log.i(" ------------------ ");
     }
 
     Future save(SharedPreferences pref) async {
-        await pref.setBool("localGitRepoConfigured", localGitRepoConfigured);
         await pref.setBool("remoteGitRepoConfigured", remoteGitRepoConfigured);
-        await pref.setString("localGitRepoPath", localGitRepoFolderName);
         await pref.setString("remoteGitRepoPath", remoteGitRepoFolderName);
         await pref.setString("gitBaseDirectory", gitBaseDirectory);
     }

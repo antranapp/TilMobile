@@ -29,10 +29,19 @@ dependencies:
     shared_preferences: ^0.5.6
     uuid: ^2.0.1
     synchronized: ^2.2.0
+    yaml: ^2.2.0
+    yaml_serializer: ^0.0.5
+    intl: ^0.16.0
+    flutter_emoji: ">= 2.0.0"
+    equatable: ^1.1.0
+    font_awesome_flutter: ^8.7.0
+    path_provider: ^1.6.7
 
     dots_indicator: ^0.0.3
 
     git_bindings: ^0.0.12
+    dart_git:
+        git: https://github.com/GitJournal/dart_git.git
 
 dev_dependencies:
     flutter_test:

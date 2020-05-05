@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:function_types/function_types.dart';
 
 import 'button.dart';
-import 'git_setup_key_editors.dart';
+import 'key_editors.dart';
 
 class GitUserProvidedSshKeys extends StatefulWidget {
     final Func2<String, String, void> doneFunction;
