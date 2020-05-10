@@ -8,8 +8,7 @@ import 'package:path/path.dart' as p;
 import 'note_filename_format.dart';
 
 String getFileName(Note note) {
-    var date =
-        note.created ?? note.modified ?? note.fileLastModified ?? DateTime.now();
+    var date = note.created ?? note.modified ?? note.fileLastModified ?? DateTime.now();
     switch (Settings.instance.noteFileNameFormat) {
         case NoteFileNameFormat.SimpleDate:
             return toSimpleDateTime(date);

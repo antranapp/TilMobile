@@ -60,7 +60,8 @@ class GitAutoConfigurePageState extends State<GitAutoConfigurePage> {
                     });
 
                     try {
-                        repo = await gitHost.createRepo("journal");
+                        // FIXME: move this to setting
+                        repo = await gitHost.createRepo("today-i-learned");
                     } on GitHostException catch (e) {
                         if (e.cause != GitHostException.RepoExists.cause) {
                             rethrow;
@@ -89,7 +90,7 @@ class GitAutoConfigurePageState extends State<GitAutoConfigurePage> {
                     if (userInfo.email != null && userInfo.email.isNotEmpty) {
                         Settings.instance.gitAuthorEmail = userInfo.email;
                     }
-                    //Settings.instance.save();
+                    Settings.instance.save();
                 } on Exception catch (e, stacktrace) {
                     _handleGitHostException(e, stacktrace);
                     return;

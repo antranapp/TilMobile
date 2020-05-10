@@ -25,6 +25,7 @@ class _FolderListingScreenState extends State<FolderListingScreen> {
             key: _folderTreeViewKey,
             rootFolder: notesFolder,
             onFolderEntered: (NotesFolderFS folder) {
+                print(folder.name);
                 var route = MaterialPageRoute(
                     builder: (context) => FolderView(
                         notesFolder: folder,

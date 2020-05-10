@@ -276,9 +276,9 @@ class NotesFolderFS with NotesFolderNotifier implements NotesFolder {
     }
 
     void create() {
-        // Git doesn't track Directories, only files, so we create an empty .gitignore file
+        // Git doesn't track Directories, only files, so we create an empty .gitkeep file
         // in the directory instead.
-        var gitIgnoreFilePath = p.join(folderPath, ".gitignore");
+        var gitIgnoreFilePath = p.join(folderPath, ".gitkeep");
         var file = File(gitIgnoreFilePath);
         if (!file.existsSync()) {
             file.createSync(recursive: true);

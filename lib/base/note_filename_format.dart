@@ -2,8 +2,7 @@ class NoteFileNameFormat {
     static const Iso8601WithTimeZone =
     NoteFileNameFormat("Iso8601WithTimeZone", "ISO8601 With TimeZone");
     static const Iso8601 = NoteFileNameFormat("Iso8601", "Iso8601");
-    static const Iso8601WithTimeZoneWithoutColon = NoteFileNameFormat(
-        "Iso8601WithTimeZoneWithoutColon", "ISO8601 without Colons");
+    static const Iso8601WithTimeZoneWithoutColon = NoteFileNameFormat("Iso8601WithTimeZoneWithoutColon", "ISO8601 without Colons");
     static const FromTitle = NoteFileNameFormat("FromTitle", "Title");
     static const SimpleDate =
     NoteFileNameFormat("SimpleDate", "yyyy-mm-dd-hh-mm-ss");
