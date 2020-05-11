@@ -7,22 +7,16 @@ typedef void FolderSelectedCallback(NotesFolderFS folder);
 class FolderTreeView extends StatefulWidget {
     final NotesFolderFS rootFolder;
 
-    final FolderSelectedCallback onFolderSelected;
-    final Function onFolderUnselected;
     final FolderSelectedCallback onFolderEntered;
 
     FolderTreeView({
         Key key,
         @required this.rootFolder,
         @required this.onFolderEntered,
-        this.onFolderSelected = _doNothing,
-        this.onFolderUnselected = _doNothing,
     }) : super(key: key);
 
     @override
     FolderTreeViewState createState() => FolderTreeViewState();
-
-    static void _doNothing(NotesFolderFS f) {}
 }
 
 class FolderTreeViewState extends State<FolderTreeView> {
@@ -46,14 +40,10 @@ class FolderTreeViewState extends State<FolderTreeView> {
 class FolderTile extends StatefulWidget {
     final NotesFolderFS folder;
     final FolderSelectedCallback onTap;
-    final FolderSelectedCallback onLongPress;
-    final NotesFolderFS selectedFolder;
 
     FolderTile({
         @required this.folder,
         @required this.onTap,
-        @required this.onLongPress,
-        @required this.selectedFolder,
     });
 
     @override
@@ -77,7 +67,6 @@ class FolderTileState extends State<FolderTile> {
                 GestureDetector(
                     child: _buildFolderTile(),
                     onTap: () => widget.onTap(widget.folder),
-                    onLongPress: () => widget.onLongPress(widget.folder),
                 ),
                 _getChild(),
             ],
@@ -87,7 +76,7 @@ class FolderTileState extends State<FolderTile> {
     Widget _buildFolderTile() {
         var folder = widget.folder;
         var ic = _isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down;
-        var trailling = folder.hasSubFolders
+        var trailing = folder.hasSubFolders
             ? IconButton(
             icon: Icon(ic),
             onPressed: expand,
@@ -96,13 +85,12 @@ class FolderTileState extends State<FolderTile> {
 
         var folderName = folder.name;
         if (folder.parent == null) {
-            folderName = "Root Folder";
+            folderName = "TIL";
         }
-        var subtitle = folder.numberOfNotes.toString() + " Notes";
+        var subtitle = folder.numberOfNotes.toString() + " tils";
 
         final theme = Theme.of(context);
 
-        var selected = widget.selectedFolder == widget.folder;
         return Card(
             child: ListTile(
                 leading: Container(
@@ -117,10 +105,9 @@ class FolderTileState extends State<FolderTile> {
                 ),
                 title: Text(folderName),
                 subtitle: Text(subtitle),
-                trailing: trailling,
-                selected: selected,
+                trailing: trailing,
             ),
-            color: selected ? theme.selectedRowColor : theme.cardColor,
+            color: theme.cardColor,
         );
     }
 
@@ -138,8 +125,6 @@ class FolderTileState extends State<FolderTile> {
             children.add(FolderTile(
                 folder: folder,
                 onTap: widget.onTap,
-                onLongPress: widget.onLongPress,
-                selectedFolder: widget.selectedFolder,
             ));
         });
 

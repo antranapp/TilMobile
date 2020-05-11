@@ -7,7 +7,6 @@ import 'package:collection/collection.dart';
 
 import 'note.dart';
 import 'notes_folder_fs.dart';
-//import 'sorting_mode.dart';
 import 'package:til/utils/logger.dart';
 
 class NotesCache {
@@ -33,7 +32,6 @@ class NotesCache {
             var filePath = fullFilePath.substring(notesBasePath.length);
             var components = filePath.split(sep);
 
-            //
             // Create required folders
             var parent = rootFolder;
             for (var i = 0; i < components.length - 1; i++) {

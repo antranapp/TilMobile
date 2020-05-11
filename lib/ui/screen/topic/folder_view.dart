@@ -9,8 +9,8 @@ import 'package:til/base/notes_folder_fs.dart';
 import 'package:til/settings//settings.dart';
 import 'package:til/state/state_container.dart';
 import 'package:til/ui/screen/topic/standard_view.dart';
-import 'package:til/utils//utils.dart';
 import 'package:til/base/note.dart';
+import 'common.dart';
 
 class FolderView extends StatefulWidget {
     final NotesFolder notesFolder;
@@ -34,7 +34,7 @@ class _FolderViewState extends State<FolderView> {
         var fsFolder = widget.notesFolder.fsFolder;
         if (fsFolder.name == widget.notesFolder.name) {
             title = widget.notesFolder.parent == null
-                ? "Root Folder"
+                ? "TIL"
                 : widget.notesFolder.pathSpec();
         }
 
@@ -59,20 +59,5 @@ class _FolderViewState extends State<FolderView> {
             ),
             extendBody: true,
         );
-    }
-
-    void openNoteEditor(BuildContext context, Note note) async {
-        /*var route = MaterialPageRoute(
-            builder: (context) => NoteEditor.fromNote(note),
-        );
-        var showUndoSnackBar = await Navigator.of(context).push(route);
-        if (showUndoSnackBar != null) {
-            Log.d("Showing an undo snackbar");
-
-            var snackBar = buildUndoDeleteSnackbar(context, note);
-            Scaffold.of(context)
-                ..removeCurrentSnackBar()
-                ..showSnackBar(snackBar);
-        }*/
     }
 }

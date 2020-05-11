@@ -24,6 +24,9 @@ class Settings {
     RemoteSyncFrequency remoteSyncFrequency = RemoteSyncFrequency.Default;
     int version = 0;
 
+    SettingsMarkdownDefaultView markdownDefaultView = SettingsMarkdownDefaultView.Default;
+
+
     String _pseudoId;
     String get pseudoId => _pseudoId;
 
@@ -116,6 +119,53 @@ class RemoteSyncFrequency {
     @override
     String toString() {
         assert(false, "RemoteSyncFrequency toString should never be called");
+        return "";
+    }
+}
+
+class SettingsMarkdownDefaultView {
+    static const Edit = SettingsMarkdownDefaultView("Edit");
+    static const View = SettingsMarkdownDefaultView("View");
+    static const Default = View;
+
+    final String _str;
+    const SettingsMarkdownDefaultView(this._str);
+
+    String toInternalString() {
+        return _str;
+    }
+
+    String toPublicString() {
+        return _str;
+    }
+
+    static const options = <SettingsMarkdownDefaultView>[
+        Edit,
+        View,
+    ];
+
+    static SettingsMarkdownDefaultView fromInternalString(String str) {
+        for (var opt in options) {
+            if (opt.toInternalString() == str) {
+                return opt;
+            }
+        }
+        return Default;
+    }
+
+    static SettingsMarkdownDefaultView fromPublicString(String str) {
+        for (var opt in options) {
+            if (opt.toPublicString() == str) {
+                return opt;
+            }
+        }
+        return Default;
+    }
+
+    @override
+    String toString() {
+        assert(
+        false, "SettingsMarkdownDefaultView toString should never be called");
         return "";
     }
 }
