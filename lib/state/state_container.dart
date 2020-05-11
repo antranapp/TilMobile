@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:til/core/git_repo.dart';
 import 'package:til/core/notes_folder_fs.dart';
 import 'package:til/utils/logger.dart';
+import 'package:til/error_reporting.dart';
 
 import 'app_state.dart';
 
@@ -35,6 +36,38 @@ class StateContainer with ChangeNotifier {
         await _persistConfig();
         _loadNotes();
         notifyListeners();
+    }
+
+    Future<void> syncNotes({bool doNotThrow = false}) async {
+        if (!appState.remoteGitRepoConfigured) {
+            Log.d("Not syncing because RemoteRepo not configured");
+            return true;
+        }
+
+        appState.syncStatus = SyncStatus.Pulling;
+        notifyListeners();
+
+        Future noteLoadingFuture;
+        try {
+            await _gitRepo.pull();
+
+            noteLoadingFuture = _loadNotes();
+
+            Log.d("Synced!");
+            appState.syncStatus = SyncStatus.Done;
+            appState.numChanges = 0;
+            notifyListeners();
+        } catch (e, stacktrace) {
+            Log.d("Failed to Sync");
+            appState.syncStatus = SyncStatus.Error;
+            notifyListeners();
+            if (shouldLogGitException(e)) {
+                await logException(e, stacktrace);
+            }
+            if (!doNotThrow) rethrow;
+        }
+
+        await noteLoadingFuture;
     }
 
     void reset() async {

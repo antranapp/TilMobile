@@ -38,7 +38,7 @@ class StandardView extends StatelessWidget {
         Widget titleWidget = Text(
             title,
             style: textTheme.headline6,
-            overflow: TextOverflow.ellipsis,
+            //overflow: TextOverflow.,
         );
         Widget trailing = Container();
 
@@ -49,7 +49,7 @@ class StandardView extends StatelessWidget {
         }
 
         var titleRow = Row(
-            children: <Widget>[Expanded(child: titleWidget), trailing],
+            children: <Widget>[Flexible(child: titleWidget), trailing],
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,

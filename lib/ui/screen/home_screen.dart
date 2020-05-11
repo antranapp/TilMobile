@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:til/core/note.dart';
 
 import 'package:til/state/state_container.dart';
 import 'package:til/ui/widget/app_drawer.dart';
 import 'package:til/ui/widget/note_viewer.dart';
+import 'package:til/ui/widget/sync_button.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -19,6 +19,9 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
             appBar: AppBar(
                 title: Text("Today I Learned"),
+                actions: <Widget>[
+                    if (appState.remoteGitRepoConfigured) SyncButton(),
+                ],
             ),
             body: NoteViewer(note: readmeNote),
             drawer: AppDrawer(),
