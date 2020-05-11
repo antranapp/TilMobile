@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:til/base/note.dart';
-import 'package:til/base/notes_folder.dart';
+import 'package:til/core/note.dart';
+import 'package:til/core/notes_folder.dart';
 import 'package:til/ui/widget/icon_dismissable.dart';
 
 typedef void NoteSelectedFunction(Note note);

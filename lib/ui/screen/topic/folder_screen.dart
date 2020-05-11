@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:til/core/notes_folder_fs.dart';
+
 import 'folder_view.dart';
 import 'folder_tree_view.dart';
-import 'package:til/base/notes_folder_fs.dart';
-import 'package:til/state/state_container.dart';
 
 class FolderListingScreen extends StatefulWidget {
     @override
@@ -17,7 +17,6 @@ class _FolderListingScreenState extends State<FolderListingScreen> {
     @override
     Widget build(BuildContext context) {
         final notesFolder = Provider.of<NotesFolderFS>(context);
-        final stateContainer = Provider.of<StateContainer>(context);
 
         var treeView = FolderTreeView(
             key: _folderTreeViewKey,

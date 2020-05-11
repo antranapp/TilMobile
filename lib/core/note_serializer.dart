@@ -2,7 +2,7 @@ import 'package:til/utils/datetime.dart';
 import 'package:til/settings//settings.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 
-import 'md_yaml_doc.dart';
+import 'markdown/md_yaml_doc.dart';
 import 'note.dart';
 
 abstract class NoteSerializerInterface {

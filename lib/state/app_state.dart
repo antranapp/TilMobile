@@ -1,8 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'package:til/utils/logger.dart';
-import 'package:til/base/notes_folder_fs.dart';
+import 'package:til/core/notes_folder_fs.dart';
 
 enum SyncStatus {
     Unknown,

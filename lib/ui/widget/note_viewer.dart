@@ -11,9 +11,8 @@ import 'package:path/path.dart' as p;
 
 import 'package:til/ui/screen/topic/common.dart';
 import 'package:til/utils//utils.dart';
-
-import 'package:til/base/note.dart';
-import 'package:til/base/notes_folder_fs.dart';
+import 'package:til/core/note.dart';
+import 'package:til/core/notes_folder_fs.dart';
 
 class NoteViewer extends StatelessWidget {
     final Note note;

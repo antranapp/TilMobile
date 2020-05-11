@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:function_types/function_types.dart';
 
+import 'package:function_types/function_types.dart';
 import 'package:git_bindings/git_bindings.dart';
 
 import 'package:til/apis/git/git_host_factory.dart';

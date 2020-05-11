@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
 import 'package:path/path.dart' as p;
 import 'package:collection/collection.dart';
+import 'package:til/utils/logger.dart';
 
 import 'note.dart';
 import 'notes_folder_fs.dart';
-import 'package:til/utils/logger.dart';
 
 class NotesCache {
     final String filePath;

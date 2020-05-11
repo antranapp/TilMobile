@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:til/base/notes_folder.dart';
+import 'package:til/core/notes_folder.dart';
+import 'package:til/core/note.dart';
 import 'package:til/ui/screen/topic/standard_view.dart';
-import 'package:til/base/note.dart';
+
 import 'common.dart';
 
 class FolderView extends StatefulWidget {
@@ -30,7 +31,7 @@ class _FolderViewState extends State<FolderView> {
 
         Widget folderView = Builder(
             builder: (BuildContext context) {
-                const emptyText = "Let's add some notes?";
+                const emptyText = "No tils found!";
                 var noteSelectionFn = (Note note) => openNoteEditor(context, note);
                 return StandardView(
                     folder: widget.notesFolder,

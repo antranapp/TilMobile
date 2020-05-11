@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'md_yaml_doc_loader.dart';
+import 'markdown/md_yaml_doc_loader.dart';
 import 'note_notifier.dart';
 import 'notes_folder_fs.dart';
 import 'package:til/utils/markdown.dart';
@@ -8,8 +8,8 @@ import 'package:til/utils/logger.dart';
 
 import 'package:path/path.dart' as p;
 
-import 'md_yaml_doc.dart';
-import 'md_yaml_doc_codec.dart';
+import 'markdown/md_yaml_doc.dart';
+import 'markdown/md_yaml_doc_codec.dart';
 import 'note_filename.dart';
 import 'note_serializer.dart';
 

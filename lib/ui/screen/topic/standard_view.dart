@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 
+import 'package:til/core/note.dart';
+import 'package:til/core/notes_folder.dart';
+
 import 'folder_list_view.dart';
-
-import 'package:til/base/note.dart';
-import 'package:til/base/notes_folder.dart';
-
 
 class StandardView extends StatelessWidget {
     final NoteSelectedFunction noteSelectedFunction;

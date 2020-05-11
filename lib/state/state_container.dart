@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:synchronized/synchronized.dart';
-
 import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:til/base/git_repo.dart';
-import 'package:til/base/notes_folder_fs.dart';
-import 'app_state.dart';
+import 'package:til/core/git_repo.dart';
+import 'package:til/core/notes_folder_fs.dart';
 import 'package:til/utils/logger.dart';
+
+import 'app_state.dart';
 
 class StateContainer with ChangeNotifier {
     final AppState appState;

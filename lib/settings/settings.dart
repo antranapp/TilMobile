@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
-import 'package:til/base/note_filename_format.dart';
+import 'package:til/core/note_filename_format.dart';
 
 class Settings {
     static List<Function> changeObservers = [];
