@@ -32,6 +32,7 @@ class TilApp extends StatelessWidget {
                 '/folders': (context) => FolderListingScreen(),
                 '/setupRemoteGit': (context) => SettingGitSetupScreen(stateContainer.completeGitHostSetup),
             },
+            debugShowCheckedModeBanner: false
         );
     }
 
