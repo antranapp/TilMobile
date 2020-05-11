@@ -60,7 +60,6 @@ class NoteViewer extends StatelessWidget {
                                 if (link.startsWith('./')) {
                                     final rootFolder = Provider.of<NotesFolderFS>(context);
                                     var spec = link.substring(2);
-                                    print("spec = " + spec);
                                     var note = rootFolder.getNoteWithSpec(spec);
                                     if (note != null) {
                                         openNoteEditor(context, note);

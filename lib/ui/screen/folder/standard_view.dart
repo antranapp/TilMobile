@@ -38,7 +38,6 @@ class StandardView extends StatelessWidget {
         Widget titleWidget = Text(
             title,
             style: textTheme.headline6,
-            //overflow: TextOverflow.,
         );
         Widget trailing = Container();
 
