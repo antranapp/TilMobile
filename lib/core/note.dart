@@ -205,22 +205,6 @@ class Note with NotesNotifier {
         _notifyModified();
     }
 
-    bool move(NotesFolderFS destFolder) {
-        var destPath = p.join(destFolder.folderPath, fileName);
-        if (File(destPath).existsSync()) {
-            return false;
-        }
-
-        File(filePath).renameSync(destPath);
-
-        parent.remove(this);
-        parent = destFolder;
-        destFolder.add(this);
-
-        _notifyModified();
-        return true;
-    }
-
     @override
     int get hashCode => _filePath.hashCode;
 

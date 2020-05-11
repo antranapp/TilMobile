@@ -18,7 +18,7 @@ class TilApp extends StatelessWidget {
     MaterialApp _buildApp(BuildContext context) {
         var stateContainer = Provider.of<StateContainer>(context);
 
-        var initialRoute = '/folders';
+        var initialRoute = '/';
         if (!stateContainer.appState.remoteGitRepoConfigured) {
             initialRoute = '/setupRemoteGit';
         }

@@ -40,6 +40,13 @@ class AppDrawer extends StatelessWidget {
                     _buildDrawerTile(
                         context,
                         icon: Icons.folder,
+                        title: "Home",
+                        onTap: () => _navTopLevel(context, '/'),
+                        selected: currentRoute == "/",
+                    ),
+                    _buildDrawerTile(
+                        context,
+                        icon: Icons.folder,
                         title: "Folders",
                         onTap: () => _navTopLevel(context, '/folders'),
                         selected: currentRoute == "/folders",

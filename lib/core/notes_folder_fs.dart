@@ -39,39 +39,6 @@ class NotesFolderFS with NotesFolderNotifier implements NotesFolder {
         notifyListeners();
     }
 
-    void _noteModified(Note note) {
-        notifyNoteModified(-1, note);
-    }
-
-    void _noteRenamed(Note note, String oldPath) {
-        assert(_entityMap.containsKey(oldPath));
-        _entityMap.remove(oldPath);
-        _entityMap[note.filePath] = note;
-
-        notifyNoteRenamed(-1, note, oldPath);
-    }
-
-    void _subFolderRenamed(NotesFolderFS folder, String oldPath) {
-        assert(_entityMap.containsKey(oldPath));
-        _entityMap.remove(oldPath);
-        _entityMap[folder.folderPath] = folder;
-    }
-
-    void reset(String folderPath) {
-        _folderPath = folderPath;
-
-        var notesCopy = List<Note>.from(_notes);
-        notesCopy.forEach(remove);
-
-        var foldersCopy = List<NotesFolderFS>.from(_folders);
-        foldersCopy.forEach(removeFolder);
-
-        assert(_notes.isEmpty);
-        assert(_folders.isEmpty);
-
-        notifyListeners();
-    }
-
     String get folderPath => _folderPath;
 
     @override
@@ -185,7 +152,6 @@ class NotesFolderFS with NotesFolderNotifier implements NotesFolder {
                     continue;
                 }
                 //Log.d("Found folder ${fsEntity.path}");
-                _addFolderListeners(subFolder);
 
                 _folders.add(subFolder);
                 _entityMap[fsEntity.path] = subFolder;
@@ -201,7 +167,6 @@ class NotesFolderFS with NotesFolderNotifier implements NotesFolder {
                 continue;
             }
             //Log.d("Found file ${fsEntity.path}");
-            _addNoteListeners(note);
 
             _notes.add(note);
             _entityMap[fsEntity.path] = note;
@@ -220,7 +185,6 @@ class NotesFolderFS with NotesFolderNotifier implements NotesFolder {
 
             if (e is Note) {
                 Log.d("File $path was no longer found");
-                _removeNoteListeners(e);
 
                 var i = _notes.indexWhere((n) => n.filePath == path);
                 assert(i != -1);
@@ -229,7 +193,6 @@ class NotesFolderFS with NotesFolderNotifier implements NotesFolder {
                 notifyNoteRemoved(i, note);
             } else {
                 Log.d("Folder $path was no longer found");
-                _removeFolderListeners(e);
 
                 var i = _folders.indexWhere((f) => f.folderPath == path);
                 assert(i != -1);
@@ -238,95 +201,6 @@ class NotesFolderFS with NotesFolderNotifier implements NotesFolder {
                 notifyFolderRemoved(i, folder);
             }
         });
-    }
-
-    void add(Note note) {
-        assert(note.parent == this);
-        _addNoteListeners(note);
-
-        _notes.add(note);
-        _entityMap[note.filePath] = note;
-
-        notifyNoteAdded(_notes.length - 1, note);
-    }
-
-    void remove(Note note) {
-        assert(note.parent == this);
-        _removeNoteListeners(note);
-
-        assert(_notes.indexWhere((n) => n.filePath == note.filePath) != -1);
-        assert(_entityMap.containsKey(note.filePath));
-
-        var index = _notes.indexWhere((n) => n.filePath == note.filePath);
-        assert(index != -1);
-        _notes.removeAt(index);
-        _entityMap.remove(note.filePath);
-
-        notifyNoteRemoved(index, note);
-    }
-
-    void _addNoteListeners(Note note) {
-        note.addModifiedListener(_noteModified);
-        note.addRenameListener(_noteRenamed);
-    }
-
-    void _removeNoteListeners(Note note) {
-        note.removeModifiedListener(_noteModified);
-        note.removeRenameListener(_noteRenamed);
-    }
-
-    void create() {
-        // Git doesn't track Directories, only files, so we create an empty .gitkeep file
-        // in the directory instead.
-        var gitIgnoreFilePath = p.join(folderPath, ".gitkeep");
-        var file = File(gitIgnoreFilePath);
-        if (!file.existsSync()) {
-            file.createSync(recursive: true);
-        }
-        notifyListeners();
-    }
-
-    void addFolder(NotesFolderFS folder) {
-        assert(folder.parent == this);
-        _addFolderListeners(folder);
-
-        _folders.add(folder);
-        _entityMap[folder.folderPath] = folder;
-
-        notifyFolderAdded(_folders.length - 1, folder);
-    }
-
-    void removeFolder(NotesFolderFS folder) {
-        _removeFolderListeners(folder);
-
-        assert(_folders.indexWhere((f) => f.folderPath == folder.folderPath) != -1);
-        assert(_entityMap.containsKey(folder.folderPath));
-
-        var index = _folders.indexWhere((f) => f.folderPath == folder.folderPath);
-        assert(index != -1);
-        _folders.removeAt(index);
-        _entityMap.remove(folder.folderPath);
-
-        notifyFolderRemoved(index, folder);
-    }
-
-    void rename(String newName) {
-        var oldPath = _folderPath;
-        var dir = Directory(_folderPath);
-        _folderPath = p.join(dirname(_folderPath), newName);
-        dir.renameSync(_folderPath);
-
-        notifyThisFolderRenamed(this, oldPath);
-    }
-
-    void _addFolderListeners(NotesFolderFS folder) {
-        folder.addListener(_entityChanged);
-        folder.addThisFolderRenamedListener(_subFolderRenamed);
-    }
-
-    void _removeFolderListeners(NotesFolderFS folder) {
-        folder.removeListener(_entityChanged);
-        folder.removeThisFolderRenamedListener(_subFolderRenamed);
     }
 
     @override
