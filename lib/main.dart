@@ -37,7 +37,7 @@ void main() async {
     }
 
     // ChangeNotifierProvider is the widget that provides an instance of a `ChangeNotifier` to its descendants.
-    // It comes from the `provider package.
+    // It comes from the `provider` package.
     // Here we want to inject the StateContainer into all descendants of `TilApp`.
     // With this we can modify the `StateContainer` from anywhere in the widget tree.
     runApp(ChangeNotifierProvider(

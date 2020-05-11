@@ -37,10 +37,6 @@ class NoteEditorState extends State<NoteEditor> {
 
     final _markdownEditorKey = GlobalKey<MarkdownEditorState>();
 
-    bool get _isNewNote {
-        return widget.note == null;
-    }
-
     NoteEditorState.newNote(NotesFolderFS folder) {
         note = Note.newNote(folder);
     }

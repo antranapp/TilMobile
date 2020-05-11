@@ -7,5 +7,5 @@ void openNoteEditor(BuildContext context, Note note) async {
     var route = MaterialPageRoute(
         builder: (context) => NoteEditor.fromNote(note),
     );
-    var showUndoSnackBar = await Navigator.of(context).push(route);
+    await Navigator.of(context).push(route);
 }

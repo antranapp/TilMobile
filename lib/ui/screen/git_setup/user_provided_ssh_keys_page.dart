@@ -48,14 +48,14 @@ class _GitUserProvidedSshKeysState extends State<GitUserProvidedSshKeys> {
                 children: <Widget>[
                     Text(
                         "Public Key -",
-                        style: Theme.of(context).textTheme.headline,
+                        style: Theme.of(context).textTheme.headline5,
                     ),
                     const SizedBox(height: 8.0),
                     PublicKeyEditor(_publicFormKey, _publicKeyController),
                     const SizedBox(height: 8.0),
                     Text(
                         "Private Key -",
-                        style: Theme.of(context).textTheme.headline,
+                        style: Theme.of(context).textTheme.headline5,
                     ),
                     const SizedBox(height: 8.0),
                     PrivateKeyEditor(_privateFormKey, _privateKeyController),

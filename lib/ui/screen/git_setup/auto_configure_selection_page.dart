@@ -17,7 +17,7 @@ class GitAutoConfigureSelectionPage extends StatelessWidget {
                 children: <Widget>[
                     Text(
                         "How do you want to do this?",
-                        style: Theme.of(context).textTheme.headline,
+                        style: Theme.of(context).textTheme.headline5,
                     ),
                     const SizedBox(height: 16.0),
                     GitHostSetupButton(

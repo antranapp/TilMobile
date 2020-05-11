@@ -28,50 +28,6 @@ class _FolderListViewState extends State<FolderListView> {
     var deletedViaDismissed = <String>[];
 
     @override
-    void initState() {
-        super.initState();
-
-        widget.folder.addNoteAddedListener(_noteAdded);
-        widget.folder.addNoteRemovedListener(_noteRemoved);
-        widget.folder.addListener(_folderChanged);
-    }
-
-    @override
-    void dispose() {
-        widget.folder.removeNoteAddedListener(_noteAdded);
-        widget.folder.removeNoteRemovedListener(_noteRemoved);
-        widget.folder.removeListener(_folderChanged);
-
-        super.dispose();
-    }
-
-    void _noteAdded(int index, Note _) {
-        if (_listKey.currentState == null) {
-            return;
-        }
-        _listKey.currentState.insertItem(index);
-    }
-
-    void _noteRemoved(int index, Note note) {
-        if (_listKey.currentState == null) {
-            return;
-        }
-        _listKey.currentState.removeItem(index, (context, animation) {
-            var i = deletedViaDismissed.indexWhere((path) => path == note.filePath);
-            if (i == -1) {
-                return _buildNote(context, note, animation);
-            } else {
-                deletedViaDismissed.removeAt(i);
-                return Container();
-            }
-        });
-    }
-
-    void _folderChanged() {
-        setState(() {});
-    }
-
-    @override
     Widget build(BuildContext context) {
         if (widget.folder.notes.isEmpty) {
             return Center(

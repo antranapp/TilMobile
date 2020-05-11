@@ -37,7 +37,7 @@ class StandardView extends StatelessWidget {
         String title = note.title;
         Widget titleWidget = Text(
             title,
-            style: textTheme.title,
+            style: textTheme.headline6,
             overflow: TextOverflow.ellipsis,
         );
         Widget trailing = Container();

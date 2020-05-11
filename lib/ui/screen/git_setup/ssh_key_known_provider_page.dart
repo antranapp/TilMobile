@@ -34,14 +34,14 @@ class GitHostSetupSshKeyKnownProvider extends StatelessWidget {
             children: <Widget>[
                 Text(
                     'In order to access this repository, this public key must be copied as a deploy key',
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.headline6,
                 ),
                 const SizedBox(height: 32.0),
 
                 // Step 1
                 Text(
                     '1. Copy the key',
-                    style: Theme.of(context).textTheme.subtitle,
+                    style: Theme.of(context).textTheme.subtitle2,
                 ),
                 const SizedBox(height: 8.0),
                 PublicKeyWidget(publicKey),
@@ -60,7 +60,7 @@ class GitHostSetupSshKeyKnownProvider extends StatelessWidget {
                 // Step 2
                 Text(
                     '2. Open webpage, and paste the deploy key. Make sure it is given Write Access. ',
-                    style: Theme.of(context).textTheme.subtitle,
+                    style: Theme.of(context).textTheme.subtitle2,
                 ),
                 const SizedBox(height: 8.0),
                 GitHostSetupButton(
@@ -72,7 +72,7 @@ class GitHostSetupSshKeyKnownProvider extends StatelessWidget {
                 // Step 3
                 Text(
                     '3. Try Cloning ..',
-                    style: Theme.of(context).textTheme.subtitle,
+                    style: Theme.of(context).textTheme.subtitle2,
                 ),
                 const SizedBox(height: 8.0),
                 GitHostSetupButton(

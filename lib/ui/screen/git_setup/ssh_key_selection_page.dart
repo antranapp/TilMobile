@@ -21,7 +21,7 @@ class GitSshKeySelectionPage extends StatelessWidget {
                 children: <Widget>[
                     Text(
                         "We need SSH keys to authenticate -",
-                        style: Theme.of(context).textTheme.headline,
+                        style: Theme.of(context).textTheme.headline5,
                     ),
                     const SizedBox(height: 16.0),
                     GitHostSetupButton(

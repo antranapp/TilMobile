@@ -98,7 +98,7 @@ class _NoteBodyEditor extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        var style = Theme.of(context).textTheme.subhead;
+        var style = Theme.of(context).textTheme.subtitle1;
 
         return TextField(
             keyboardType: TextInputType.multiline,

@@ -5,12 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:git_bindings/git_bindings.dart';
 import 'package:dart_git/git.dart' as git;
 
-import 'note.dart';
-import 'notes_folder.dart';
-import 'notes_folder_fs.dart';
 import 'package:til/settings//settings.dart';
 import 'package:til/utils/logger.dart';
 
+import 'note.dart';
+import 'notes_folder_fs.dart';
 
 class NoteRepoResult {
     bool error;

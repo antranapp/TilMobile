@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path/path.dart' as p;
 
-import 'package:til/ui/screen/topic/common.dart';
+import 'package:til/ui/screen/folder/common.dart';
 import 'package:til/utils//utils.dart';
 import 'package:til/core/note.dart';
 import 'package:til/core/notes_folder_fs.dart';
@@ -23,16 +23,16 @@ class NoteViewer extends StatelessWidget {
         ThemeData theme = Theme.of(context);
         theme = theme.copyWith(
             textTheme: theme.textTheme.copyWith(
-                body1: theme.textTheme.subhead,
+                bodyText2: theme.textTheme.subtitle1,
             ),
         );
 
         // Copied from MarkdownStyleSheet except Grey is replaced with Highlight color
         var markdownStyleSheet = MarkdownStyleSheet.fromTheme(theme).copyWith(
-            code: theme.textTheme.body1.copyWith(
+            code: theme.textTheme.bodyText2.copyWith(
                 backgroundColor: theme.dialogBackgroundColor,
                 fontFamily: "monospace",
-                fontSize: theme.textTheme.body1.fontSize * 0.85,
+                fontSize: theme.textTheme.bodyText2.fontSize * 0.85,
             ),
             tableBorder: TableBorder.all(color: theme.highlightColor, width: 0),
             tableCellsDecoration: BoxDecoration(color: theme.dialogBackgroundColor),
@@ -94,7 +94,7 @@ class NoteTitleHeader extends StatelessWidget {
         var textTheme = Theme.of(context).textTheme;
         return Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-            child: Text(header, style: textTheme.title),
+            child: Text(header, style: textTheme.headline6),
         );
     }
 }

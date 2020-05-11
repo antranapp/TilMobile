@@ -18,7 +18,7 @@ class PublicKeyWidget extends StatelessWidget {
                             publicKey,
                             textAlign: TextAlign.left,
                             maxLines: null,
-                            style: Theme.of(context).textTheme.body1,
+                            style: Theme.of(context).textTheme.bodyText2,
                         ),
                     ),
                 ),

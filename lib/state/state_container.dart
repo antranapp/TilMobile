@@ -15,7 +15,6 @@ import 'app_state.dart';
 class StateContainer with ChangeNotifier {
     final AppState appState;
 
-    final _opLock = Lock();
     final _loadLock = Lock();
 
     GitNoteRepository _gitRepo;
@@ -23,9 +22,7 @@ class StateContainer with ChangeNotifier {
     StateContainer(this.appState) {
         if (appState.remoteGitRepoConfigured) {
             String repoPath = p.join(appState.gitBaseDirectory, appState.localGitRemoteFolderName);
-            Log.d(repoPath);
             _gitRepo = GitNoteRepository(gitDirPath: repoPath);
-            appState.notesFolder = NotesFolderFS(null, _gitRepo.gitDirPath);
         } else {
             _removeExistingRemoteClone();
         }
@@ -35,9 +32,15 @@ class StateContainer with ChangeNotifier {
 
     void completeGitHostSetup() async {
         appState.remoteGitRepoConfigured = true;
+
+        _setupNoteFolder();
         await _persistConfig();
         _loadNotes();
         notifyListeners();
+    }
+
+    void _setupNoteFolder() {
+        appState.notesFolder = NotesFolderFS(null, _gitRepo.gitDirPath);
     }
 
     void reset() async {
@@ -50,9 +53,6 @@ class StateContainer with ChangeNotifier {
     // Private helpers
 
     void _loadFromCache() async {
-        /*await _notesCache.load(appState.notesFolder);
-        Log.i("Finished loading the notes cache");*/
-
         await _loadNotes();
         Log.i("Finished loading all the notes");
     }
@@ -77,7 +77,6 @@ class StateContainer with ChangeNotifier {
         // FIXME: We should report the notes that failed to load
         return _loadLock.synchronized(() async {
             await appState.notesFolder.loadRecursively();
-            //await _notesCache.buildCache(appState.notesFolder);
 
             appState.numChanges = await _gitRepo.numChanges();
             notifyListeners();

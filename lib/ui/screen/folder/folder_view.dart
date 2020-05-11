@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:til/core/notes_folder.dart';
 import 'package:til/core/note.dart';
-import 'package:til/ui/screen/topic/standard_view.dart';
 
 import 'common.dart';
+import 'standard_view.dart';
 
 class FolderView extends StatefulWidget {
     final NotesFolder notesFolder;

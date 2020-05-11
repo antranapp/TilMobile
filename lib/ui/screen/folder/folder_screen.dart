@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:til/core/notes_folder_fs.dart';
+import 'package:til/ui/widget/app_drawer.dart';
 
 import 'folder_view.dart';
 import 'folder_tree_view.dart';
@@ -37,16 +38,9 @@ class _FolderListingScreenState extends State<FolderListingScreen> {
         return Scaffold(
             appBar: AppBar(
                 title: title,
-                /*actions: <Widget>[
-                    RaisedButton(
-                        child: Text('Reset'),
-                        onPressed: () {
-                            stateContainer.reset();
-                        },
-                    )
-                ],*/
             ),
             body: Scrollbar(child: treeView),
+            drawer: AppDrawer(),
         );
     }
 }

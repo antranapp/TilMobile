@@ -19,7 +19,7 @@ class GitProviderSelectionPage extends StatelessWidget {
                 children: <Widget>[
                     Text(
                         "Select a Git Hosting Provider",
-                        style: Theme.of(context).textTheme.headline,
+                        style: Theme.of(context).textTheme.headline5,
                     ),
                     const SizedBox(height: 16.0),
                     GitHostSetupButton(

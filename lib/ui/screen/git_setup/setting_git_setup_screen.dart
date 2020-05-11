@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:path_provider/path_provider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:git_bindings/git_bindings.dart';
@@ -12,7 +11,6 @@ import 'package:function_types/function_types.dart';
 import 'package:path/path.dart' as p;
 
 import 'package:til/apis/git/git_host_factory.dart';
-
 import 'package:til/ui/screen/git_setup/setup_type.dart';
 import 'package:til/utils/utils.dart';
 import 'package:til/utils/logger.dart';
