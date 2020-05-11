@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'til_app.dart';
+import 'app.dart';
 import 'state/state_container.dart';
 import 'state/app_state.dart';
 import 'settings/settings.dart';
