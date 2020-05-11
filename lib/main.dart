@@ -47,7 +47,7 @@ void main() async {
         child: ChangeNotifierProvider(
             child: TilApp(),
             create: (_) {
-                //assert(appState.notesFolder != null);
+                assert(appState.notesFolder != null);
                 return appState.notesFolder;
             },
         )

@@ -20,27 +20,21 @@ class StateContainer with ChangeNotifier {
     GitNoteRepository _gitRepo;
 
     StateContainer(this.appState) {
+        String repoPath = p.join(appState.gitBaseDirectory, appState.localGitRemoteFolderName);
+        _gitRepo = GitNoteRepository(gitDirPath: repoPath);
+        appState.notesFolder = NotesFolderFS(null, _gitRepo.gitDirPath);
         if (appState.remoteGitRepoConfigured) {
-            String repoPath = p.join(appState.gitBaseDirectory, appState.localGitRemoteFolderName);
-            _gitRepo = GitNoteRepository(gitDirPath: repoPath);
+            _loadFromCache();
         } else {
             _removeExistingRemoteClone();
         }
-
-        _loadFromCache();
     }
 
     void completeGitHostSetup() async {
         appState.remoteGitRepoConfigured = true;
-
-        _setupNoteFolder();
         await _persistConfig();
         _loadNotes();
         notifyListeners();
-    }
-
-    void _setupNoteFolder() {
-        appState.notesFolder = NotesFolderFS(null, _gitRepo.gitDirPath);
     }
 
     void reset() async {
