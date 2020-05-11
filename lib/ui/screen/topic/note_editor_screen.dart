@@ -65,18 +65,20 @@ class NoteEditorState extends State<NoteEditor> {
     Widget build(BuildContext context) {
         return WillPopScope(
             onWillPop: () async {
-                _saveNote(_getNoteFromEditor());
                 return true;
             },
             child: _getEditor(),
         );
     }
 
+    // Private helpers
+
     Widget _getEditor() {
         return MarkdownEditor(
             key: _markdownEditorKey,
             note: note,
             noteModified: _noteModified(note),
+            exitEditorSelected: _exitEditorSelected,
             discardChangesSelected: _discardChangesSelected,
             isNewNote: _isNewNote,
         );
@@ -107,12 +109,8 @@ class NoteEditorState extends State<NoteEditor> {
         return false;
     }
 
-    void _saveNote(Note note) {
-        if (!_noteModified(note)) return;
-
-        print("Note modified - saving");
-        var stateContainer = Provider.of<StateContainer>(context, listen: false);
-        //_isNewNote ? stateContainer.addNote(note) : stateContainer.updateNote(note);
+    void _exitEditorSelected(Note note) {
+        Navigator.pop(context);
     }
 
     Note _getNoteFromEditor() {

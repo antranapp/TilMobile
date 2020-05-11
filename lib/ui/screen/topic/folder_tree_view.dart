@@ -23,7 +23,6 @@ class FolderTreeViewState extends State<FolderTreeView> {
 
     @override
     Widget build(BuildContext context) {
-        print("root = " + widget.rootFolder.name + " - " + widget.rootFolder.folderPath);
         var tile = FolderTile(
             folder: widget.rootFolder,
             onTap: (NotesFolderFS folder) {

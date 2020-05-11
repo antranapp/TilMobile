@@ -5,7 +5,7 @@ import 'package:til/state/state_container.dart';
 
 import 'package:til/ui/screen/git_setup/setting_git_setup_screen.dart';
 import 'package:til/ui/screen/home_screen.dart';
-import 'package:til/ui/screen/topic/topic_screen.dart';
+import 'package:til/ui/screen/topic/folder_screen.dart';
 
 class TilApp extends StatelessWidget {
 
